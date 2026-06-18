@@ -1,18 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Library</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h6>Books</h6>
-            <button>New Book</button>
-        </header>
-    </div>
-    
+    <header>
+        <h1>Books</h1>
+        <button>New Book</button>
+    </header>
+
+    <aside>
+        <form>
+            <h2>Genre</h2>
+
+            <label>
+                <input type="radio" name="genre" value="All" checked>
+                All
+            </label>
+
+            <label>
+                <input type="radio" name="genre" value="Action">
+                Action
+            </label>
+
+            <label>
+                <input type="radio" name="genre" value="Fantasy">
+                Fantasy
+            </label>
+
+            <label>
+                <input type="radio" name="genre" value="Historical">
+                Historical
+            </label>
+
+            <label>
+                <input type="radio" name="genre" value="Horror">
+                Horror
+            </label>
+
+            <label>
+                <input type="radio" name="genre" value="Mystery">
+                Mystery
+            </label>
+
+            <label>
+                <input type="radio" name="genre" value="Romance">
+                Romance
+            </label>
+
+            <label>
+                <input type="radio" name="genre" value="Sci-Fi">
+                Sci-Fi
+            </label>
+        </form>
+    </aside>
+
+
+    <main>
+        <div class="card-grid-container">
+
+            <div class="card">
+                <img src="./placeholder-pic.jpg" alt="placeholder image">
+                <div class="card-info">
+                    <h3>Title</h3>
+                    <p>Author: </p>
+                    <p>Genre: </p>
+                    <p>Status: </p>
+                    <div class="card-footer">
+                        <button class="edit-toggle">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./placeholder-pic.jpg" alt="placeholder image">
+                <div class="card-info">
+                    <h3>Dune</h3>
+                    <p>by Frank Herbert</p>
+                    <p>Sci-Fi</p>
+                    <p>Status: Finished</p>
+                    <div class="card-footer">
+                        <button class="edit-toggle">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./placeholder-pic.jpg" alt="placeholder image">
+                <div class="card-info">
+                    <h3>Title</h3>
+                    <p>Author: </p>
+                    <p>Genre: </p>
+                    <p>Status: </p>
+                    <div class="card-footer">
+                        <button class="edit-toggle">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./placeholder-pic.jpg" alt="placeholder image">
+                <div class="card-info">
+                    <h3>Title</h3>
+                    <p>Author: </p>
+                    <p>Genre: </p>
+                    <p>Status: </p>
+                    <div class="card-footer">
+                        <button class="edit-toggle">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
 </body>
+
 </html>

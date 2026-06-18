@@ -91,6 +91,7 @@ main {
     display: flex;
 }
 
+/* Aside styles */
 aside {
     grid-area: aside;
 }
@@ -103,6 +104,7 @@ aside form {
 aside label {
     color: white;
 }
+/* Aside styles */
 
 /* Card Grid + Card Styles */
 .card-grid-container {
@@ -153,5 +155,11 @@ aside label {
 
 .card button:hover {
     color: var(--primary-gray);
+    border: 1px solid var(--primary-gray);
+}
+
+.card button:active {
+    color: black;
+    border: 1px solid black;
 }
 /* Card Styles */

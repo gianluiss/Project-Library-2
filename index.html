@@ -11,8 +11,15 @@
 <body>
     <header>
         <h1>Books</h1>
-        <button class="new-book-btn">New Book</button>
+        <button class="new-book-btn" command="show-modal" commandfor="add-book-dialog">
+            <img src="./plus-sign.svg" alt="Add book plus sign">
+        </button>
     </header>
+
+    <dialog id="add-book-dialog">
+        <p>Hello</p>
+        <button commandfor="add-book-dialog" command="close"></button>
+    </dialog>
 
     <aside>
         <h2>Genre</h2>

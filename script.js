@@ -25,9 +25,8 @@ function displayBooks() {
 addBookToLibrary("Dune", "Frank Herbert", "Sci-Fi", false);
 addBookToLibrary("Tiki Tembo", "Michelle Obama", "Fantasy", true);
 addBookToLibrary("Interstellar", "Christopher Nolan", "Sci-Fi", true);
-
-displayBooks();
 */
+//displayBooks();
 
 const newBook = document.querySelector(".new-book-btn");
 const addBookDialog = document.querySelector("#add-book-dialog");
@@ -103,6 +102,13 @@ function createCard(book) {
     return card;
 }
 
+function render() {
+    cardGrid.replaceChildren();
+    for(let book of myLibrary) {
+        cardGrid.appendChild(createCard(book));
+    }
+}
+
 addBookForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -115,11 +121,6 @@ addBookForm.addEventListener("submit", (e) => {
     addBookToLibrary(title, author, genre, status);
     addBookForm.reset();
     addBookDialog.close();
-
-    //console.log(myLibrary[myLibrary.length - 1]);
-
-    //Might change this soon since appending card to grid might be separate from submitting
-    cardGrid.appendChild(createCard(myLibrary[myLibrary.length - 1]));
-
-    //console.log(myLibrary);
+    
+    render();
 });

@@ -32,8 +32,9 @@ displayBooks();
 const newBook = document.querySelector(".new-book-btn");
 const addBookDialog = document.querySelector("#add-book-dialog");
 const addBookForm = document.querySelector("#add-book-form");
-
 const dialogClose = document.querySelectorAll(".dialog-close");
+
+const cardGrid = document.querySelector(".card-grid-container");
 
 dialogClose.forEach(btn => {
     btn.addEventListener("click", (e) => {
@@ -50,6 +51,58 @@ newBook.addEventListener("click", () => {
     addBookDialog.showModal();
 });
 
+function createCard(book) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const img = document.createElement("img");
+    img.classList.add("card-img");
+    img.src = "./placeholder-pic.jpg";
+
+    const cardInfo = document.createElement("div");
+    cardInfo.classList.add("card-info");
+    
+    const title = document.createElement("h3");
+    const author = document.createElement("p");
+    const genre = document.createElement("p");
+    const status = document.createElement("p");
+
+    title.textContent = book.title;
+    author.textContent = "by " + book.author;
+    genre.textContent = book.genre;
+    status.textContent = `Status: ${book.status === "true" ? "Read" : "Unread"}`;
+
+    const cardFooter = document.createElement("div");
+    cardFooter.classList.add("card-footer");
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("card-btn");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.textContent = "Delete";
+
+    const editBtn = document.createElement("button");
+    editBtn.classList.add("card-btn");
+    editBtn.classList.add("edit-btn");
+    editBtn.textContent = "Edit";
+
+    // Append cardFooter children
+    cardFooter.appendChild(deleteBtn);
+    cardFooter.appendChild(editBtn);
+
+    // Append  cardInfo children
+    cardInfo.appendChild(title);
+    cardInfo.appendChild(author);
+    cardInfo.appendChild(genre);
+    cardInfo.appendChild(status);
+    cardInfo.appendChild(cardFooter);
+
+    // Append card children
+    card.appendChild(img);
+    card.appendChild(cardInfo);
+
+    return card;
+}
+
 addBookForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -62,5 +115,11 @@ addBookForm.addEventListener("submit", (e) => {
     addBookToLibrary(title, author, genre, status);
     addBookForm.reset();
     addBookDialog.close();
-    console.log(myLibrary);
+
+    //console.log(myLibrary[myLibrary.length - 1]);
+
+    //Might change this soon since appending card to grid might be separate from submitting
+    cardGrid.appendChild(createCard(myLibrary[myLibrary.length - 1]));
+
+    //console.log(myLibrary);
 });

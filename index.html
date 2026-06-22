@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Library</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
     <header>
         <h1>Books</h1>
-        <button class="new-book-btn" command="show-modal" commandfor="add-book-dialog">
+        <button class="new-book-btn">
             <img src="./plus-sign.svg" alt="Add book plus sign">
         </button>
     </header>
@@ -19,7 +20,7 @@
     <dialog id="add-book-dialog">
         <div class="dialog-wrapper">
             <h2>Add Book</h2>
-            <form>
+            <form id="add-book-form">
                 <div class="field">
                     <label for="title">Title:</label>
                     <input type="text" id="title" required>
@@ -46,19 +47,19 @@
     
                 <div class="status-container">
                     <label>
-                        <input type="radio" name="status" value="true">
+                        <input type="radio" id="read" name="status" value="true" required>
                         Read
                     </label>
                     <label>
-                        <input type="radio" name="status" value="false">
+                        <input type="radio" id="unread" name="status" value="false">
                         Unread
                     </label>
                 </div>
             </form>
-    
+
             <div class="dialog-btn-container">
-                <button class="dialog-close" commandfor="add-book-dialog" command="close">Close</button>
-                <button class="dialog-submit" type="Submit">Submit</button>
+                <button class="dialog-close">Close</button>
+                <button class="dialog-submit" form="add-book-form" type="Submit">Submit</button>
             </div>
         </div>
     </dialog>
@@ -111,77 +112,80 @@
 
 
     <main>
+
+    <!--
+        <div class="card">
+            <img src="./placeholder-pic.jpg" alt="placeholder image">
+            <div class="card-info">
+                <h3>Dune</h3>
+                <p>by Frank Herbert</p>
+                <p>Sci-Fi</p>
+                <p>Status: Finished</p>
+                <div class="card-footer">
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-toggle">Edit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./placeholder-pic.jpg" alt="placeholder image">
+            <div class="card-info">
+                <h3>Dune</h3>
+                <p>by Frank Herbert</p>
+                <p>Sci-Fi</p>
+                <p>Status: Finished</p>
+                <div class="card-footer">
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-toggle">Edit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./placeholder-pic.jpg" alt="placeholder image">
+            <div class="card-info">
+                <h3>Dune</h3>
+                <p>by Frank Herbert</p>
+                <p>Sci-Fi</p>
+                <p>Status: Finished</p>
+                <div class="card-footer">
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-toggle">Edit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./placeholder-pic.jpg" alt="placeholder image">
+            <div class="card-info">
+                <h3>Dune</h3>
+                <p>by Frank Herbert</p>
+                <p>Sci-Fi</p>
+                <p>Status: Finished</p>
+                <div class="card-footer">
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-toggle">Edit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./placeholder-pic.jpg" alt="placeholder image">
+            <div class="card-info">
+                <h3>Dune</h3>
+                <p>by Frank Herbert</p>
+                <p>Sci-Fi</p>
+                <p>Status: Finished</p>
+                <div class="card-footer">
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-toggle">Edit</button>
+                </div>
+            </div>
+        </div>
+    -->
         <div class="card-grid-container">
 
-            <div class="card">
-                <img src="./placeholder-pic.jpg" alt="placeholder image">
-                <div class="card-info">
-                    <h3>Dune</h3>
-                    <p>by Frank Herbert</p>
-                    <p>Sci-Fi</p>
-                    <p>Status: Finished</p>
-                    <div class="card-footer">
-                        <button class="delete-btn">Delete</button>
-                        <button class="edit-toggle">Edit</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="./placeholder-pic.jpg" alt="placeholder image">
-                <div class="card-info">
-                    <h3>Dune</h3>
-                    <p>by Frank Herbert</p>
-                    <p>Sci-Fi</p>
-                    <p>Status: Finished</p>
-                    <div class="card-footer">
-                        <button class="delete-btn">Delete</button>
-                        <button class="edit-toggle">Edit</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="./placeholder-pic.jpg" alt="placeholder image">
-                <div class="card-info">
-                    <h3>Dune</h3>
-                    <p>by Frank Herbert</p>
-                    <p>Sci-Fi</p>
-                    <p>Status: Finished</p>
-                    <div class="card-footer">
-                        <button class="delete-btn">Delete</button>
-                        <button class="edit-toggle">Edit</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="./placeholder-pic.jpg" alt="placeholder image">
-                <div class="card-info">
-                    <h3>Dune</h3>
-                    <p>by Frank Herbert</p>
-                    <p>Sci-Fi</p>
-                    <p>Status: Finished</p>
-                    <div class="card-footer">
-                        <button class="delete-btn">Delete</button>
-                        <button class="edit-toggle">Edit</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="./placeholder-pic.jpg" alt="placeholder image">
-                <div class="card-info">
-                    <h3>Dune</h3>
-                    <p>by Frank Herbert</p>
-                    <p>Sci-Fi</p>
-                    <p>Status: Finished</p>
-                    <div class="card-footer">
-                        <button class="delete-btn">Delete</button>
-                        <button class="edit-toggle">Edit</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </main>

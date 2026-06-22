@@ -1,6 +1,6 @@
 const myLibrary = [];
 
-function Book(title, author, genre, isRead) {
+function Book(title, author, genre, status) {
     if(!new.target) {
         throw Error("You must use the 'new' keyword to construct");
     }
@@ -8,24 +8,23 @@ function Book(title, author, genre, isRead) {
     this.title =  title;
     this.author = author;
     this.genre = genre;
-    this.isRead = isRead;
+    this.status = status;
 }
 
-function addBookToLibrary(title, author, genre, isRead) {
-    myLibrary.push(new Book(title, author, genre, isRead));
+function addBookToLibrary(title, author, genre, status) {
+    myLibrary.push(new Book(title, author, genre, status));
 }
 
 function displayBooks() {
     for(const book of myLibrary) {
-        console.log(`ID: ${book.id} | Title: ${book.title} | Author: ${book.author} | Genre: ${book.genre} | isRead: ${book.isRead}`)
+        console.log(`ID: ${book.id} | Title: ${book.title} | Author: ${book.author} | Genre: ${book.genre} | status: ${book.isRead}`)
     }
 }
 
-/*
 addBookToLibrary("Dune", "Frank Herbert", "Sci-Fi", false);
 addBookToLibrary("Tiki Tembo", "Michelle Obama", "Fantasy", true);
 addBookToLibrary("Interstellar", "Christopher Nolan", "Sci-Fi", true);
-*/
+addBookToLibrary("About Time", "Richard Curtis", "Romance", true);
 //displayBooks();
 
 const newBook = document.querySelector(".new-book-btn");
@@ -34,6 +33,19 @@ const addBookForm = document.querySelector("#add-book-form");
 const dialogClose = document.querySelectorAll(".dialog-close");
 
 const cardGrid = document.querySelector(".card-grid-container");
+
+cardGrid.addEventListener("click", (e) => {
+    if(e.target.classList.contains("delete-btn")) {
+        const card = e.target.closest(".card");
+        const index = myLibrary.findIndex(book => book.id === card.dataset.id);
+
+        if(index === -1) 
+            return;
+
+        myLibrary.splice(index, 1);
+        render();
+    }
+});
 
 dialogClose.forEach(btn => {
     btn.addEventListener("click", (e) => {
@@ -52,6 +64,7 @@ newBook.addEventListener("click", () => {
 
 function createCard(book) {
     const card = document.createElement("div");
+    card.dataset.id = book.id;
     card.classList.add("card");
 
     const img = document.createElement("img");
@@ -69,7 +82,7 @@ function createCard(book) {
     title.textContent = book.title;
     author.textContent = "by " + book.author;
     genre.textContent = book.genre;
-    status.textContent = `Status: ${book.status === "true" ? "Read" : "Unread"}`;
+    status.textContent = `Status: ${book.status === true ? "Read" : "Unread"}`;
 
     const cardFooter = document.createElement("div");
     cardFooter.classList.add("card-footer");
@@ -115,12 +128,14 @@ addBookForm.addEventListener("submit", (e) => {
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const genre = document.querySelector("#genre").value;
-    const status = document.querySelector('input[name="status"]:checked').value;
+    const status = document.querySelector('input[name="status"]:checked').value === "true";
 
     //console.log(`Title: ${title} | Author: ${author} | Genre: ${genre} | Status: ${status}`);
     addBookToLibrary(title, author, genre, status);
     addBookForm.reset();
     addBookDialog.close();
-    
+
     render();
 });
+
+render();

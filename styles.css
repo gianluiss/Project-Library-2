@@ -150,7 +150,8 @@ aside label:hover {
 .card-grid-container {
     display: grid;
     grid-template-columns: repeat(3, minmax(250px, 1fr));
-    grid-template-rows: repeat(2, 1fr);
+    /*grid-template-rows: repeat(2, 1fr);*/
+    grid-template-rows: repeat(auto-fit, 385px); /*will settle for px for now much more predictable */
     width: 100%;
     gap: 1.2rem;
     align-items: start;
@@ -201,6 +202,7 @@ aside label:hover {
     justify-content: end;
     align-items: center;
     gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .card-btn {

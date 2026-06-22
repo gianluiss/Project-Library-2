@@ -11,13 +11,17 @@ function Book(title, author, genre, status) {
     this.status = status;
 }
 
+Book.prototype.toggleStatus = function() {
+    this.status = !this.status;
+}
+
 function addBookToLibrary(title, author, genre, status) {
     myLibrary.push(new Book(title, author, genre, status));
 }
 
 function displayBooks() {
     for(const book of myLibrary) {
-        console.log(`ID: ${book.id} | Title: ${book.title} | Author: ${book.author} | Genre: ${book.genre} | status: ${book.isRead}`)
+        console.log(`ID: ${book.id} | Title: ${book.title} | Author: ${book.author} | Genre: ${book.genre} | status: ${book.status}`)
     }
 }
 
@@ -25,7 +29,11 @@ addBookToLibrary("Dune", "Frank Herbert", "Sci-Fi", false);
 addBookToLibrary("Tiki Tembo", "Michelle Obama", "Fantasy", true);
 addBookToLibrary("Interstellar", "Christopher Nolan", "Sci-Fi", true);
 addBookToLibrary("About Time", "Richard Curtis", "Romance", true);
+
+
+
 //displayBooks();
+
 
 const newBook = document.querySelector(".new-book-btn");
 const addBookDialog = document.querySelector("#add-book-dialog");
@@ -33,6 +41,17 @@ const addBookForm = document.querySelector("#add-book-form");
 const dialogClose = document.querySelectorAll(".dialog-close");
 
 const cardGrid = document.querySelector(".card-grid-container");
+
+cardGrid.addEventListener("click", (e) => {
+    if(e.target.classList.contains("toggle-btn")) {
+        const card = e.target.closest(".card");
+        const index = myLibrary.findIndex(book => book.id === card.dataset.id);
+
+        myLibrary[index].toggleStatus();
+        displayBooks();
+        render();
+    }
+});
 
 cardGrid.addEventListener("click", (e) => {
     if(e.target.classList.contains("delete-btn")) {
@@ -82,7 +101,7 @@ function createCard(book) {
     title.textContent = book.title;
     author.textContent = "by " + book.author;
     genre.textContent = book.genre;
-    status.textContent = `Status: ${book.status === true ? "Read" : "Unread"}`;
+    //status.textContent = `Status: ${book.status ? "Read" : "Unread"}`;
 
     const cardFooter = document.createElement("div");
     cardFooter.classList.add("card-footer");
@@ -92,20 +111,26 @@ function createCard(book) {
     deleteBtn.classList.add("delete-btn");
     deleteBtn.textContent = "Delete";
 
-    const editBtn = document.createElement("button");
-    editBtn.classList.add("card-btn");
-    editBtn.classList.add("edit-btn");
-    editBtn.textContent = "Edit";
+    const toggleBtn = document.createElement("button");
+    toggleBtn.classList.add("card-btn");
+    toggleBtn.classList.add("toggle-btn");
+
+    if(book.status === true) {
+        toggleBtn.textContent = "Read";
+    }
+    else {
+        toggleBtn.textContent = "Unread";
+    }
 
     // Append cardFooter children
     cardFooter.appendChild(deleteBtn);
-    cardFooter.appendChild(editBtn);
+    cardFooter.appendChild(toggleBtn);
 
     // Append  cardInfo children
     cardInfo.appendChild(title);
     cardInfo.appendChild(author);
     cardInfo.appendChild(genre);
-    cardInfo.appendChild(status);
+    //cardInfo.appendChild(status);
     cardInfo.appendChild(cardFooter);
 
     // Append card children
@@ -123,6 +148,7 @@ function render() {
 }
 
 addBookForm.addEventListener("submit", (e) => {
+    console.log("submit fired");
     e.preventDefault();
 
     const title = document.querySelector("#title").value;

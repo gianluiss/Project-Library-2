@@ -30,10 +30,7 @@ addBookToLibrary("Tiki Tembo", "Michelle Obama", "Fantasy", true);
 addBookToLibrary("Interstellar", "Christopher Nolan", "Sci-Fi", true);
 addBookToLibrary("About Time", "Richard Curtis", "Romance", true);
 
-
-
 //displayBooks();
-
 
 const newBook = document.querySelector(".new-book-btn");
 const addBookDialog = document.querySelector("#add-book-dialog");
@@ -48,7 +45,7 @@ cardGrid.addEventListener("click", (e) => {
         const index = myLibrary.findIndex(book => book.id === card.dataset.id);
 
         myLibrary[index].toggleStatus();
-        displayBooks();
+        //displayBooks();
         render();
     }
 });
